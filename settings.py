@@ -49,6 +49,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'main.block_ip.BlockIPMiddleware',
 )
 
 ROOT_URLCONF = 'urls'
@@ -91,3 +92,7 @@ DATABASES = {
         'NAME': path.join(path.dirname(__file__), 'database.sqlite3')
     }
 }
+
+BLOCKED_IPS = [
+    '81.108.149.166',
+]
