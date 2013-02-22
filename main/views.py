@@ -277,11 +277,12 @@ def pull(request, number=None):
         raise Http404
     pull_data = json.loads(pull_data)
     user, branch = pull_data['head']['label'].split(":")
+    user_repo = pull_data['head']['repo']['name']
 
     # Don't check_call the "git remote add"; we expect it to fail if the remote
     # exists already
     call_git(["remote", "add", user,
-              "git://github.com/%s/%s.git" % (user, settings.SANDCASTLE_REPO)])
+              "git://github.com/%s/%s.git" % (user, user_repo)])
     check_call_git(["fetch", user])
 
     update_static_dir(user, branch)
