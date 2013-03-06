@@ -344,3 +344,7 @@ def branch(request, branch=None):
         context_instance=RequestContext(request),
     )
 
+
+def post_update(request):
+    return branch(request, "master")
+

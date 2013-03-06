@@ -5,4 +5,5 @@ urlpatterns = patterns('main.views',
     url(r'^pull/(?P<number>\d+)/?$', 'pull', name='pull'),
     url(r'^branch/(?P<branch>[^/]*)/?$', 'branch', name='branch'),
     url(r'^phab/(?P<id>\d+)/?$', 'phab', name='phab'),
+    url(r'^post_update$', 'post_update', name='post_update'),
 )
