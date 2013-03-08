@@ -105,7 +105,7 @@ def home(request):
 
         branches.append({
             'name': branch,
-            'path': "origin:" + branch
+            'path': "%s:%s" % (settings.SANDCASTLE_USER, branch)
         })
 
     with closing(urlopen(
@@ -314,8 +314,6 @@ def branch(request, branch=None):
 
     if ":" in branch:
         user, branch = branch.split(":")
-    else:
-        user = "origin"
 
     # Don't check_call the "git remote add"; we expect it to fail if the remote
     # exists already
