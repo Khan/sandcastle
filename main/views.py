@@ -108,10 +108,13 @@ def home(request):
             'path': "%s:%s" % (settings.SANDCASTLE_USER, branch)
         })
 
-    with closing(urlopen(
-            "https://api.github.com/repos/%s/%s/pulls?per_page=30" %
-            (settings.SANDCASTLE_USER, settings.SANDCASTLE_REPO))) as u:
-        pull_data = u.read()
+    try:
+        with closing(urlopen(
+                "https://api.github.com/repos/%s/%s/pulls?per_page=30" %
+                (settings.SANDCASTLE_USER, settings.SANDCASTLE_REPO))) as u:
+            pull_data = u.read()
+    except HTTPError:
+        pull_data = "[]"
 
     arc_process = subprocess.Popen(
         ["arc", "call-conduit", "differential.query"],
@@ -287,8 +290,11 @@ def pull(request, number=None):
 
     update_static_dir(user, branch)
 
-    with closing(urlopen(pull_data['diff_url'])) as u:
-        patch = encoding.force_unicode(u.read(), errors='ignore')
+    try:
+        with closing(urlopen(pull_data['diff_url'])) as u:
+            patch = encoding.force_unicode(u.read(), errors='ignore')
+    except HTTPError:
+        raise Http404
 
     all_files, patch_linked = render_diff(patch)
 
