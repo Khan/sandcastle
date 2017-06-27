@@ -285,7 +285,7 @@ def pull(request, number=None):
     # Don't check_call the "git remote add"; we expect it to fail if the remote
     # exists already
     call_git(["remote", "add", user,
-              "git://github.com/%s/%s.git" % (user, user_repo)])
+              "https://github.com/%s/%s.git" % (user, user_repo)])
     check_call_git(["fetch", user])
 
     update_static_dir(user, branch)
@@ -323,7 +323,7 @@ def branch(request, branch=None):
 
     # Don't check_call the "git remote add"; we expect it to fail if the remote
     # exists already
-    call_git(["remote", "add", user, "git://github.com/%s/%s.git" %
+    call_git(["remote", "add", user, "https://github.com/%s/%s.git" %
              (user, settings.SANDCASTLE_REPO)])
     check_call_git(["fetch", user])
 
