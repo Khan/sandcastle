@@ -3,6 +3,10 @@ sandcastle
 
 This is a Django project which allows you to test pull requests from your browser.
 
+Deprecated
+----------
+This project is no longer in use at Khan Academy.
+
 Configuration
 -------------
 
@@ -16,5 +20,5 @@ for this repository would look like:
 Used At
 -------
 
-It is currently in use at [Khan Academy](http://www.khanacademy.org) to
-test pull requests to their exercise framework. It is hosted at [sandcastle.khanacademy.org](http://sandcastle.khanacademy.org).
+It was in use at [Khan Academy](http://www.khanacademy.org) to
+test pull requests to their exercise framework, but is no longer used for that purpose.
